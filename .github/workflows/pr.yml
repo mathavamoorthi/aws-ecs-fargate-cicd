@@ -1,0 +1,28 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install deps
+        working-directory: ./app
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint
+        working-directory: ./app
+        run: flake8 . --max-line-length=100 --exclude=tests
+
+      - name: Test
+        working-directory: ./app
+        run: pytest -v

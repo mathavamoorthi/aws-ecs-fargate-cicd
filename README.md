@@ -1,14 +1,10 @@
-# DevOps Project 1 — Dockerized Flask app on AWS ECS Fargate
+#Dockerized Flask app on AWS ECS Fargate
 
 Production-style deployment of a containerized Flask app on AWS with a full CI/CD pipeline.
-
-**Phase 1 (this branch):** infrastructure provisioned manually via the AWS Console (ClickOps). CI/CD via GitHub Actions.
-**Phase 2 (upcoming):** the same infrastructure re-created as Terraform code with S3/DynamoDB remote state.
 
 ---
 
 ## Architecture
-
 ```
 GitHub push → GitHub Actions → ECR (image) → ECS Fargate ← ALB ← Internet
                                                   │
@@ -43,16 +39,3 @@ curl http://localhost:8080/db
 
 - **PR workflow** (`.github/workflows/pr.yml`) — lint (flake8) + unit tests (pytest)
 - **Deploy workflow** (`.github/workflows/deploy.yml`) — on push to `main`: build image → push to ECR → update ECS task definition → rolling deploy
-
-## Cost
-
-Full stack running 24/7 in `ap-south-1` is ~$60/month (NAT Gateway dominates). `terraform destroy` when not demoing keeps total spend under $10.
-
-## Repo layout
-
-```
-app/                 Flask app + Dockerfile + tests
-.github/workflows/   CI/CD pipelines
-terraform/           (Phase 2) infrastructure as code
-docs/                Architecture, decisions, migration story
-```

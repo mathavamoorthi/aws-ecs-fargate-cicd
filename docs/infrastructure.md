@@ -92,7 +92,7 @@ Names referenced by `.github/workflows/deploy.yml` (ECR repository, cluster, ser
 | Engine | PostgreSQL 16.x |
 | Class | `db.t4g.micro`, Single-AZ |
 | Storage | gp3 20 GiB, autoscaling disabled |
-| Master user | `appuser` |
+| Master user | `postgres` |
 | Initial database | `appdb` |
 | Subnet group / SG | `devops-project-1-db-subnets` / `devops-project-1-rds-sg` |
 | Public access | no |
@@ -126,7 +126,7 @@ No task role is attached; the application does not call AWS APIs.
 |---|---|
 | `DB_HOST` | RDS endpoint |
 | `DB_NAME` | `appdb` |
-| `DB_USER` | `appuser` |
+| `DB_USER` | `postgres` |
 | `DB_PASS` | `valueFrom` SSM parameter ARN |
 | `APP_VERSION` | set to the commit SHA by the deploy workflow |
 

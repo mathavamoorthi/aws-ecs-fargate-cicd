@@ -203,6 +203,7 @@
       padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border);
       font-size: 12px;
     }
+    .build { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; opacity: .7; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
     .dot.ok { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok) 20%, transparent); }
     .dot.bad { background: var(--bad); box-shadow: 0 0 0 3px color-mix(in oklab, var(--bad) 20%, transparent); }
@@ -318,6 +319,7 @@
   <footer>
     <div class="container footer-row">
       <div>© 2026 Northwind Labs · Made with care</div>
+      <div class="build">build {{ version[:7] }} · node {{ hostname }}</div>
       <div class="status" id="status">
         <span class="dot" id="status-dot"></span>
         <span id="status-text">checking system status…</span>

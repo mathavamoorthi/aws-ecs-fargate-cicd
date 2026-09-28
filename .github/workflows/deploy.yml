@@ -9,6 +9,7 @@ env:
   ECR_REPOSITORY: devops-project-1
   ECS_CLUSTER: devops-project-1-cluster
   ECS_SERVICE: devops-project-1-svc
+  ECS_TASK_DEFINITION: devops-project-1-task
   CONTAINER_NAME: app
 
 permissions:
@@ -47,7 +48,7 @@ jobs:
       - name: Download current task definition
         run: |
           aws ecs describe-task-definition \
-            --task-definition $ECS_SERVICE \
+            --task-definition $ECS_TASK_DEFINITION \
             --query taskDefinition > task-def.json
 
       - name: Render new task definition with new image
@@ -57,6 +58,8 @@ jobs:
           task-definition: task-def.json
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build.outputs.image_uri }}
+          environment-variables: |
+            APP_VERSION=${{ github.sha }}
 
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2

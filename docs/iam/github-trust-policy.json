@@ -10,7 +10,7 @@
       "Condition": {
         "StringEquals": {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:mathavamoorthi/aws-ecs-fargate-cicd:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:mathavamoorthi@152806651/aws-ecs-fargate-cicd@1392993268:ref:refs/heads/main"
         }
       }
     }

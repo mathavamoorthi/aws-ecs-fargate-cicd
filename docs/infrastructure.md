@@ -192,7 +192,7 @@ Rollback: update the service to a previous task definition revision, or rely on 
 
 | Symptom | Cause |
 |---|---|
-| `sts:AssumeRoleWithWebIdentity` denied | Trust policy `sub` does not match repository/branch, or OIDC provider missing |
+| `sts:AssumeRoleWithWebIdentity` denied | Trust policy `sub` does not match the token, or OIDC provider missing. GitHub's `sub` includes immutable owner and repository IDs (`repo:<owner>@<owner_id>/<repo>@<repo_id>:ref:...`) |
 | `iam:PassRole` denied in deploy | Execution role name differs from the deploy policy |
 | `CannotPullContainerError ... not found` | Image tag not present in ECR |
 | `CannotPullContainerError` timeout | Task in private subnet or public IP disabled |
